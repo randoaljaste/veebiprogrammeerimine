@@ -9,7 +9,7 @@
 	if ($hourNow < 8){
 		$partOfDay = "varajane hommik";
 	}
-	if ($hourNow >= 8){
+	if ($hourNow >= 8 and $hourNow < 16){
 		$partOfDay = "koolipäev";
 	}
 	if ($hourNow > 16){
