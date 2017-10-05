@@ -75,7 +75,7 @@ if (isset ($_POST["loginEmail"])){
 		$signupBirthYear = $_POST["signupBirthYear"];
 		$signupBirthYearError = "Aasta pole määratud!";
 	} else {
-		$signupBirthDayError .= " Aasta pole sisestatud!";
+		$signupBirthDayError .= " Aasta pole määratud!";
 	}
 	
 	//kontrollin, kas kuupäev on valiidne
@@ -83,14 +83,12 @@ if (isset ($_POST["loginEmail"])){
 		if (checkdate(intval($_POST["signupBirthMonth"]), intval($_POST["signupBirthDay"]), intval($_POST["signupBirthYear"]))){
 			$birthDate = date_create($_POST["signupBirthMonth"] ."/" .$_POST["signupBirthDay"] ."/" .$_POST["signupBirthYear"]);
 			$signupBirthDate = date_format($birthDate, "Y-m-d");
-			echo $signupBirthDate;
+			$signupBirthDate;
 		} else {
 			$signupBirthDayError = "Sünnikuupäev pole valiidne!";
 			echo $signupBirthDayError;
 		}
-	}	else {
-		$signupBirthDayError = "Kuupäev pole määratud!";
-		echo $signupBirthDayError;
+
 	}
 	
 	//kontrollime, kas kirjutati kasutajanimeks email
