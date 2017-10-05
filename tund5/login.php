@@ -1,7 +1,13 @@
 <?php
 	require("../../../config.php");
 	require("functions.php");
-
+	//$echo $serverHost;
+	
+	//kui on sisseloginud, siispealehele
+	if(isset($_SESSION["userId"])){
+		header("Location: login.php");
+		exit();
+	}
 	
 	$loginEmail = "";
 	$notice = "";
@@ -33,8 +39,15 @@
 		}
 	}
 	
+		
 	if(!empty($loginEmail) and !empty($_POST["loginPassword"])){
-		//echo "Hakkan sisse logima!";
+		echo "Logime sisse!";
+	}
+		
+		
+	
+	if(!empty($loginEmail) and !empty($_POST["loginPassword"])){
+		echo "Hakkan sisse logima!";
 		$notice = signIn($loginEmail, $_POST["loginPassword"]);
 	}
 	
@@ -185,6 +198,7 @@
 	<title>Sisselogimine või uue kasutaja loomine</title>
 </head>
 <body>
+<body style="background-color:lightpink;">
 	<h1>Logi sisse!</h1>
 	<p>Siin harjutame sisselogimise funktsionaalsust.</p>
 	
