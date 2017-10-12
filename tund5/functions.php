@@ -1,6 +1,6 @@
 <?php
 	$database = "if17_aljarand";
-
+	require("../../../config.php");
 	//alustame sessiooni
 	session_start();
 	
@@ -10,10 +10,11 @@
 function signIn($email, $password){
 	$notice = "";
 	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-	$stmt = $mysqli->prepare("SELECT id, email, password FROM vpusers WHERE email = ?");
-	$stmt->bind_param("s", $email);
-	$stmt->bind_result($id, $emailFromDb, $passwordFromDb);
-	$stmt->execute();
+	$stmt = $mysqli->prepare("SELECT id, firstname, lastname, email, password FROM vpusers WHERE email = ?");
+		$stmt->bind_param("s", $email);
+		$stmt->bind_result($id, $firstnameFromDb, $lastnameFromDb, $emailFromDb, $passwordFromDb);
+		$stmt->execute();
+	
 	
 	//kontrollime kasutajat
 	if($stmt->fetch()){
@@ -23,6 +24,8 @@ function signIn($email, $password){
 			
 			//salvestame sessioonimuutujad
 			$_SESSION["userId"] = $id;
+			$_SESSION["firstname"] = $firstnameFromDb;
+			$_SESSION["lastname"] = $lastnameFromDb;
 			$_SESSION["userEmail"] = $emailFromDb;
 			
 			//liigume pealehele
@@ -61,6 +64,9 @@ function signIn($email, $password){
 		return $data;
 	}
 	
+	
+	
+
 	/*$x = 8;
 	$y = 5;
 	echo "Esimene summa on: " .($x + $y);

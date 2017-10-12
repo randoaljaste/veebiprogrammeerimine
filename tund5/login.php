@@ -190,16 +190,93 @@
 		
 	}
 	$signupYearSelectHTML.= "</select> \n";
+	
+	$monthNamesEt = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
+	//var_dump($monthNamesEt);
+	//echo $monthNamesEt[8];
+	$monthNow = $monthNamesEt[date("n") - 1];
+	
+	//hindan päeva osa 	võrdlemine  < > <= >= == != 
+	$hourNow = date("H");
+	$partOfDay = "";
+	if ($hourNow < 8){
+		$partOfDay = "varajane hommik";
+	}
+	if ($hourNow >= 8 and $hourNow < 16){
+		$partOfDay = "koolipäev";
+	}
+	if ($hourNow > 16){
+		$partOfDay = "vaba aeg";
+	}
+	//echo $partOfDay
 ?>
+
+
 <!DOCTYPE html>
 <html lang="et">
 <head>
-	<meta charset="utf-8">
-	<title>Sisselogimine või uue kasutaja loomine</title>
+<meta charset="utf-8">
+<title>Sisselogimine või uue kasutaja loomine</title>
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
 </head>
 <body>
-<body style="background-color:lightpink;">
-	<h1>Logi sisse!</h1>
+
+<div class="container">
+
+<header>
+   <h1>Rando veebiprogrammeerimine</h1>
+</header>
+  
+<nav>
+  <ul>
+    <?php
+		echo "<p>Tere tulemast minu kodulehele!</p>";
+		echo "<p>Täna on ";
+		echo date("d. ") .$monthNow . date(" Y") .", kell oli lehe avamise hetkel " .date("H:i:s");
+		echo ", hetkel on " .$partOfDay .".</p>";
+		
+	?>
+  </ul>
+</nav>
+
+<article>
+ <h1>Logi sisse!</h1>
 	<p>Siin harjutame sisselogimise funktsionaalsust.</p>
 	
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -246,6 +323,11 @@
 		
 		<input name="signupButton" type="submit" value="Loo kasutaja">
 	</form>
-		
+</article>
+
+<footer>Copyright &copy; Rando Aljaste</footer>
+
+</div>
+
 </body>
 </html>
