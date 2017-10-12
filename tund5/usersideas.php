@@ -8,35 +8,21 @@
 		exit();
 	}
 	
+	//väljalogimine
 	if(isset($_GET["logout"])){
 		session_destroy();
 		header("Location: login.php");
 		exit();
 	}
-
 	
-	$picDir = "../../pics/";
-	$picFiles = [];
-	$picFileTypes = ["jpg", "jpeg", "png", "gif", "jfif",];
-	
-	$allFiles = array_slice(scandir($picDir), 2);
-	foreach ($allFiles as $file){
-		$fileType = pathinfo($file, PATHINFO_EXTENSION);
-		if (in_array($fileType, $picFileTypes) == true){
-			array_push($picFiles, $file);
-			
+	if(isset($_POST["ideaButton"])){
+		
+		if(isset($_POST["idea"]) and !empty($_POST["idea"])){
+			echo $_POST["ideaColor"];
 		}
-			
 	}
 	
-	//$allFiles = scandir($picDir);
-	//var_dump($allFiles);
-	//$picFiles = array_slice($allFiles, 2);
-	//var_dump($picFiles);
-	$picFileCount = count ($picFiles);
-	$picNumber = mt_rand(0, $picFileCount - 1);
-	$picFile = $picFiles [$picNumber];
-	
+
 ?>
 
 
@@ -44,7 +30,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Pildid</title>
+	<title>usersInfo</title>
 	<style>
 div.container {
     width: 100%;
@@ -92,16 +78,25 @@ article {
   
 <nav>
   <ul>
-    <p><a href="?logout=1">Logi välja</a></p>
-	<p><a href="usersInfo.php">Kasutajate andmebaas</a></p>
-	<p><a href="usersideas.php">Head mõtted</a></p>
+    <p><a href="?logout=1">Logi välja!</a></p>
+	<p><a href="main.php">Pealeht</a></p>
   </ul>
 </nav>
 
 <article>
-	<h1>Tere, <?php echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?></h1>
+  <h1>Kõik süsteemi kasutajad</h1>
 	<p>See veebileht on loodud õppetööraames ning ei sisalda mingisugust tõsiseltvõetavat sisu!</p>
-	<img src="<?php echo $picDir .$picFile; ?>" alt="Auto">
+	<h2<Lisa oma hea mõte</h2>
+	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+		<label>Hea mõte: </label>
+		<input name="idea" type="text">
+		<br>
+		<label>Mõttega seonduv värv: </label>
+		<input name="ideaColor" type="color">
+		<br>
+		<input name="ideaButton" type="submit" value="Salvesta mõte!"
+	
+	</from>
 </article>
 <footer>Copyright &copy; Rando Aljaste</footer>
 

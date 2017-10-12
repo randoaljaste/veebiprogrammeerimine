@@ -82,7 +82,7 @@ article {
 	$stmt->bind_result($id, $firstnameFromDb, $lastnameFromDb, $emailFromDb, $passwordFromDb, $birthdayFromDb, $genderFromDb);
 	$stmt->execute();
 	
-	echo "<table border='1' style="border: 1px solid black; border-collapse: collapse">";
+	echo "<table border=1 style="border: 1 px solid black; border-collapse: collapse">";
 	echo "<tr><th>ID</th>";
 	echo "<th>Eesnimi</th>";
 	echo "<th>perekonnanimi</th>";
@@ -96,6 +96,7 @@ article {
 	echo "<td>" .$emailFromDb ."</td>";
 	echo "<td>" .$birthdayFromDb ."</td>";
 	echo "<td>" .$genderFromDb ."</td></tr>";
+	</table>
 	
 }
 ?>
