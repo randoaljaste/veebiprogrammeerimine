@@ -15,7 +15,7 @@
 	}
 
 	
-	$picDir = "../../pics/";
+	$picDir = "../../uploadpics/";
 	$picFiles = [];
 	$picFileTypes = ["jpg", "jpeg", "png", "gif", "jfif",];
 	
@@ -93,6 +93,7 @@ article {
 <nav>
   <ul>
     <p><a href="?logout=1">Logi välja</a></p>
+	<p><a href="uploadphoto.php">Lae üles foto</a></p>
 	<p><a href="usersInfo.php">Kasutajate andmebaas</a></p>
 	<p><a href="usersideas.php">Head mõtted</a></p>
   </ul>
